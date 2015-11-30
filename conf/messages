@@ -1,0 +1,71 @@
+# Messages
+brand=Gymix
+word.next=Weiter
+word.back=Zurück
+word.weekly=Wöchentlich
+word.onetime=Einmalig
+word.contingent=Plätze
+word.delete=Löschen
+word.edit=Bearbeiten
+word.add=Hinzufügen
+word.activate=Aktivieren
+word.name=Name
+word.description=Beschreibung
+word.recurrence=Wiederholung
+word.end=Ende
+
+sign.in=Einloggen
+sign.out=Abmelden
+sign.in.credentials=Partner Account login
+remember.me=Eingeloggt bleiben
+
+
+######
+# Footer
+contact=Kontakt
+agb=AGB
+disclaimer=Disclaimer
+impressum=Impressum
+
+######
+# Sidebar
+my.dashboard=Gymix Partner
+my.clazzes=Meine Sportkurse
+my.studio=Mein Studio
+my.bill=Meine Einnahmen
+
+######
+# Dashboard
+
+my.dashboard.breadcrumb=Eingeloggt als
+
+
+clazz.offered.amount=Sportkurse werden gerade von Ihnen angeboten
+
+
+clazzdef.start=Kursbeginn
+clazzdef.duration=Dauer (Min.)
+clazzdef.tags=Sportart
+clazzdef.contingent=Max. Plätze
+clazzdef.active.from=Kurs aktiv von
+clazzdef.active.till=Kurs aktiv bis
+
+
+
+
+enum.clazz.recurrence.onetime=Einmalig
+enum.clazz.recurrence.weekly=Wöchentlich
+enum.clazz.type.aerobic=Aerobic
+enum.clazz.type.boxen=Boxen
+enum.clazz.type.kickboxen=Kickboxen
+enum.clazz.type.crossfit=Crossfit
+enum.clazz.type.gymnastic=Gymnastic
+enum.clazz.type.yoga=Yoga
+enum.clazz.type.parcour=Parcour
+enum.clazz.type.mma=Mixed Martrial Arts (MMA)
+enum.clazz.type.thaiboxen=Thaiboxen
+enum.clazz.type.dance=Tanzen
+
+save.ok=Daten erfolgreich gespeichert
+save.fail=Speichern der Daten fehlgeschlagen
+

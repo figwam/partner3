@@ -1,0 +1,53 @@
+@(socialProviders: com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry)(implicit request: RequestHeader, messages: Messages)
+
+
+@import b3.inline.fieldConstructor
+
+@import forms.SignInForm.form
+
+
+<section id="signUp">
+    <span us-spinner="{radius:30, width:8, length: 20}"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <legend>@Messages("sign.in.credentials")</legend>
+                        <form name="form" id="sign-in-form" ng-submit="submit()" ng-model-options="{ updateOn: 'submit blur' }" autocomplete="off">
+
+                            @b3.email(form("email"), '_hiddenLabel -> Messages("email"),
+                                'placeholder -> Messages("email"), 'class -> "form-control",
+                                'required -> "", Symbol("ng-model") -> "email",
+                                Symbol("ng-class") -> "{ 'has-error': !form.email.$valid }")
+                            <div class="help-block text-danger" ng-if="form.email.$dirty" ng-messages="form.email.$error">
+                                <div ng-message="required">@Messages("error.required")</div>
+                                <div ng-message="email">@Messages("error.email")</div>
+                            </div>
+
+
+                            @b3.password(form("password"), '_hiddenLabel -> Messages("password"),
+                                'placeholder -> Messages("password"), 'class -> "form-control",
+                                'required -> "", Symbol("ng-model") -> "password",
+                                Symbol("ng-class") -> "{ 'has-error': form.password.$dirty }")
+                            <div class="help-block text-danger" ng-if="form.password.$dirty" ng-messages="form.password.$error">
+                                <div ng-message="required">@Messages("error.required")</div>
+                                <div ng-message="invalid.credentials">@Messages("invalid.credentials")</div>
+                            </div>
+
+                            @b3.checkbox(form("rememberMe"), '_text -> Messages("remember.me"), 'checked -> true, Symbol("ng-model") -> "rememberMe", Symbol("ng-init") -> "rememberMe=true")
+
+
+                            <div class="form-group">
+                                <button id="submit" type="submit" value="submit" class="btn btn-lg btn-success btn-block">@Messages("sign.in")</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</section>

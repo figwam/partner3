@@ -1,0 +1,23 @@
+{
+  "name": "partner",
+  "description": "Partner Portal",
+  "keywords": [
+    "Play",
+    "Silhouette",
+    "Slick"
+  ],
+  "website": "",
+  "repository": "",
+  "success_url": "/",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-multi",
+    "NPM_CONFIG_PRODUCTION": "false",
+    "PLAY_PROD_CONF_FILE": "application.prod.conf",
+    "FACEBOOK_CLIENT_ID": "",
+    "FACEBOOK_CLIENT_SECRET": "",
+    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_SECRET": "",
+    "TWITTER_CONSUMER_KEY": "",
+    "TWITTER_CONSUMER_SECRET": ""
+  }
+}

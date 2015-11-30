@@ -1,0 +1,41 @@
+@()(implicit messages: Messages)
+
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+    <ul class="sidebar">
+        <li class="sidebar-main">
+            <a ng-click="toggleSidebar()">
+                @Messages("brand")
+                <span class="menu-icon fa fa-exchange"></span>
+            </a>
+        </li>
+        <li class="sidebar-title"><span>@Messages("my.dashboard")</span></li>
+        <li class="sidebar-list">
+            <a ui-sref="me">@Messages("my.studio")<span class="menu-icon fa fa-home"></span></a>
+        </li>
+        <li class="sidebar-list">
+            <a ui-sref=".clazzes">@Messages("my.clazzes")<span class="menu-icon fa fa-calendar"></span></a>
+        </li>
+        <li class="sidebar-list">
+            <a ui-sref="#">@Messages("my.bill")<span class="menu-icon fa fa-credit-card"></span></a>
+        </li>
+    </ul>
+    <div class="sidebar-footer">
+        <div class="col-xs-4">
+            <a href="#" target="_blank">
+            @Messages("impressum")
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a href="#">
+            @Messages("contact")
+            </a>
+        </div>
+        <div class="col-xs-4">
+            <a ui-sref="home.signOut">
+            @Messages("sign.out")
+                <span class="menu-icon fa fa-power-off"></span></a>
+        </div>
+    </div>
+</div>
+<!-- End Sidebar -->

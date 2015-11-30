@@ -1,0 +1,51 @@
+@()(implicit messages: Messages)
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="lead"><strong class="text-danger">
+                    {{clazzes.total}}&nbsp;</strong> @Messages("clazz.offered.amount")
+                </h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a ui-sref=".edit" class="btn btn-success" type="button">@Messages("word.add")</a>
+            </div>
+        </div>
+    </div> <!-- /.row -->
+
+
+    <article class="search-result row" dir-paginate="(key, item) in clazzes.items | itemsPerPage: 10" total-items="totalClazzes" current-page="pagination.current">
+        <hr>
+        <div class="col-xs-12 col-sm-12 col-md-3">
+            <a href="#" title="{{item.name}}" class="thumbnail">
+                <img ng-if="item.avatarurl" src="{{item.avatarurl}}"/>
+                <img ng-if="!item.avatarurl" src="@routes.Assets.at("images/logo/Gymix_logo_farbig.png")"/>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-2">
+            <ul class="meta-search">
+                <li ng-if="item.recurrence == 'weekly'" ><i class="fa fa-repeat"></i>@Messages("word.weekly")</li>
+                <li ng-if="item.recurrence == 'weekly'" ><i class="fa fa-calendar"></i>{{item.startFrom | date: 'EEEE'}}</li>
+                <li ng-if="item.recurrence == 'onetime'" ><i class="fa fa-calendar-o"></i>@Messages("word.onetime")</li>
+                <li ng-if="item.recurrence == 'onetime'" ><i class="fa fa-calendar"></i>{{item.startFrom | date: 'EEE, dd MMM yyyy'}}</li>
+                <li><i class="fa fa-clock-o"></i> <span>{{item.startFrom  | date: 'HH:mm'}}-{{item.endAt | date: 'HH:mm'}}</span></li>
+                <li><i class="fa fa-users"></i>{{item.contingent}} @Messages("word.contingent")</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+            <h3><a href="#" title="">{{item.name}}</a></h3>
+            <p>{{item.description}}</p>
+
+            <button class="btn btn-danger" ng-click="delete()">@Messages("word.delete")</button>
+            <button class="btn btn-info" ng-click="add()">@Messages("word.edit")</button>
+
+        </div>
+    </article>
+    <dir-pagination-controls boundary-links="true" on-page-change="pageChanged(newPageNumber,trainee.id)" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+

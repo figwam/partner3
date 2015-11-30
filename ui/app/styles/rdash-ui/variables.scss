@@ -1,0 +1,9 @@
+@import "../bs-theme/theme";
+/* Sidebar background color */
+$sidebarBaseColor: $brand-primary;
+/* Sidebar header and footer color */
+$sidebarHeaderColor: darken($sidebarBaseColor, 2%);
+/* Sidebar title text colour */
+$sidebarTitleColor:  lighten($sidebarBaseColor, 30%);
+/* Sidebar menu item hover color */
+$sidebarMenuItemHover: $brand-warning;

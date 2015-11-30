@@ -1,0 +1,38 @@
+@()(implicit messages: Messages)
+
+<!-- Header Bar -->
+<div class="row header" ng-init="init()">
+    <div class="col-xs-12">
+        <div class="user pull-right">
+            <div class="item dropdown">
+                <a class="dropdown-toggle">
+                    <img ng-if="!trainee.avatarurl" src="images/avatar.jpg"/>
+                    <img ng-if="trainee.avatarurl" ng-src="{{trainee.avatarurl}}"/>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="dropdown-header">
+                        {{partner.fullname ? partner.fullname : partner.firstname}}
+                    </li>
+                    <li class="divider"></li>
+                    <li class="link">
+                        <a ui-sref="home.signOut">@Messages("sign.out")</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="meta">
+            <div class="page">
+                @Messages("my.dashboard")
+            </div>
+            <div class="breadcrumb-links">
+                @Messages("my.dashboard.breadcrumb"): {{partner.fullname ? partner.fullname : partner.firstname}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Header Bar -->
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+    <div class="col-xs-12">
+        <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3000">{{alert.msg}}</alert>
+    </div>
+</div>

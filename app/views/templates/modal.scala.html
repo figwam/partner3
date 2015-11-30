@@ -1,0 +1,13 @@
+@(styleclass: String, textHeader: String, textBody: String, textCloseButton: String, textActionButton: String)(implicit messages: Messages)
+
+<div class="modal-header modal-header-@styleclass">
+    <button type="button" class="close" ng-click="modalOptions.close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">@textHeader</h4>
+</div>
+<div class="modal-body">
+    <p>@textBody</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn" data-ng-click="modalOptions.close()">@textCloseButton</button>
+    <button class="btn btn-@styleclass" data-ng-click="modalOptions.ok()">@textActionButton</button>
+</div>

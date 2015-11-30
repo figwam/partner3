@@ -1,0 +1,86 @@
+@()(implicit messages: Messages)
+
+<div class="row">
+        <!-- edit form column -->
+    <form name="form" id="signup-form" ng-submit="create()">
+        <fieldset class="signUp-fieldset">
+
+
+            <div class="form-group row signUp-formGroup">
+                <div class="col-sm-6">
+                    <label class="control-label">@Messages("clazzdef.start")</label>
+                    <div class="dropdown" dropdown>
+                        <a class="dropdown-toggle" dropdown-toggle id="dropdown1" role="button" data-toggle="dropdown" data-target="#" href="#">
+                            <div class="input-group">
+                                <input type="text" class="form-control" data-ng-model="ui.startFrom">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><datetimepicker data-on-set-time="onTimeStartSet(newDate, oldDate)" data-ng-model="ui.startFrom" data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }" data-before-render="beforeRenderStart($view, $dates, $leftDate, $upDate, $rightDate)" ng-required="true"/></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="control-label">@Messages("clazzdef.duration")</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" data-ng-model="clazzdef.duration" step="5" min="5" max="1440" required>
+                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label">@Messages("word.recurrence")</label>
+                    <div class="input-group">
+                        <select class="form-control" ng-model="ui.recurrence" ng-options="option.name for option in enums.clazz.recurrences track by option.id" required><option></option></select>
+                        <span class="input-group-addon"><i class="fa fa-repeat"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="help-block text-danger" ng-if="form.clazzdef.name.$dirty" ng-messages="form.clazzdef.name.$error">
+                <div ng-message="required">@Messages("error.required")</div>
+                <div ng-message="invalid.data">@Messages("invalid.data")</div>
+            </div>
+                <!-- Text input-->
+            <div class="form-group row signUp-formGroup">
+                <div class="col-sm-12">
+                    <label class="control-label">@Messages("word.name")</label>
+                    <input type="text" ng-value="clazzdef.name" checker="scope.checkValidity" name="clazzdef.name" ng-model="clazzdef.name" placeholder="@Messages("word.name")" class="form-control input-sm" required>
+                </div>
+            </div>
+            <div class="form-group row signUp-formGroup">
+                <div class="col-sm-12">
+                    <label class="control-label">@Messages("word.description")</label>
+                    <textarea style="resize: none ;" type="text" ng-value="clazzdef.description" checker="scope.checkValidity" name="clazzdef.description" ng-model="clazzdef.description" placeholder="@Messages("word.description")" rows="5" class="form-control input-sm" required/>
+                </div>
+            </div>
+                <!--https://github.com/angular-ui/bootstrap/issues/2998-->
+
+            <div class="form-group row signUp-formGroup">
+                <div class="col-sm-6">
+                    <label class="control-label">@Messages("clazzdef.tags")</label>
+                    <div class="input-group">
+                        <select class="form-control" ng-model="ui.tags" ng-options="option.name for option in enums.clazz.types track by option.id" required><option></option></select>
+                        <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label class="control-label">@Messages("clazzdef.contingent")</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" data-ng-model="clazzdef.contingent" step="1" required min="1" max="99">
+                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                            <!--ng-disabled="form.$invalid" -->
+                        <button id="submit" type="submit" value="submit" class="btn btn-lg btn-success btn-block">@Messages("word.add")</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+

@@ -1,0 +1,31 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET           /                                      com.tuplejump.playYeoman.Yeoman.index
+
+#open resources
+GET           /partner                               controllers.ApplicationController.partner
+GET           /offers                               controllers.ApplicationController.offers
+GET           /enums                               controllers.ApplicationController.enums
+
+# Secured resources
+GET           /clazzes/partners/me                   controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
+POST          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
+GET           /signOut                               controllers.ApplicationController.signOut
+POST          /signIn                                controllers.CredentialsAuthController.authenticate
+POST          /signUp                                controllers.SignUpController.signUp
+
+
+# Dynamic part of the url
+GET           /views/$template<[^/]+>.html           controllers.ApplicationController.view(template)
+GET           /views/me/$template<[^/]+>.html        controllers.ApplicationController.viewRestricted(template)
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /assets/*file                          controllers.Assets.at(path="/public", file)
+GET           /webjars/*file                         controllers.WebJarAssets.at(file)
+
+# Cloudinary upload foto
+
+->            /                                      yeoman.Routes

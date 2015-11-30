@@ -1,0 +1,634 @@
+@import "bs-theme/theme";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap-compass";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bs-theme/theme-bw";
+
+
+/** RDash **/
+/* Sidebar background color */
+$sidebarBaseColor: $brand-primary;
+/* Sidebar header and footer color */
+$sidebarHeaderColor: darken($sidebarBaseColor, 2%);
+/* Sidebar title text colour */
+$sidebarTitleColor:  lighten($sidebarBaseColor, 30%);
+/* Sidebar menu item hover color */
+$sidebarMenuItemHover: $brand-warning;
+
+@import "rdash-ui/content";
+@import "rdash-ui/hamburg";
+@import "rdash-ui/header";
+@import "rdash-ui/loading";
+@import "rdash-ui/main";
+@import "rdash-ui/mixins";
+@import "rdash-ui/sidebar";
+@import "rdash-ui/widgets";
+
+
+
+
+
+
+
+/* CSS used here will be applied after bootstrap.css */
+/** OVERRIDE the value $icon-font-path directly in theme.css !!! **/
+///$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../../bower_components/bootstrap/fonts/") !default;
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../../bower_components/bootstrap/fonts/") !default;
+
+
+$body-bg2: darken($body-bg, 10%);
+$text-color2: lighten($text-color, 90%);
+$picture-main: '../images/box-4.jpg';
+$picture2: '../images/planching-girl-4.jpg';
+$picture3: '../images/dance-4.jpg';
+$picture4: '../images/yoga-4.jpg';
+$picture5: '../images/zumba-4.jpg';
+
+$padding-top: 90px;
+$padding-bottom: 90px;
+
+
+$navbar-default-link-color:                #fff;
+$navbar-default-link-hover-color:          $brand-success;
+$navbar-default-link-hover-bg:             transparent;
+$navbar-default-link-active-color:         #fff;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 10%);
+$navbar-default-link-disabled-color:       #ccc;
+$navbar-default-link-disabled-bg:          transparent;
+
+@media(min-width:$screen-xs-min){
+
+}
+@media(min-width:$screen-sm-min){
+
+}
+@media(min-width:$screen-md-min){
+
+}
+@media(min-width:$screen-lg-min){
+
+}
+
+.modal-header-default {
+  color:$text-color2;
+  background-color: $brand-primary;
+  border-bottom:1px solid $input-border;
+  padding:9px 15px;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.modal-header-success {
+  @extend .modal-header-default;
+  background-color: $brand-success;
+}
+.modal-header-warning {
+  @extend .modal-header-default;
+  background-color: $brand-warning;
+}
+.modal-header-danger {
+  @extend .modal-header-default;
+  background-color: $brand-danger;
+}
+.modal-header-info {
+  @extend .modal-header-default;
+  background-color: $brand-info;
+}
+.modal-header-primary {
+  @extend .modal-header-default;
+  background-color: $brand-primary;
+}
+
+.header-logo img {
+    max-width: 100%;
+    height: 20px;
+    margin-top: 18px;
+    margin-right: 18px;
+}
+
+
+.signUp-fieldset {
+  margin-top: 8px;
+}
+.signUp-formgroup {
+  margin-bottom: 1px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* img */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+form {
+  .text-danger {
+    color: $brand-danger;
+    margin-bottom: 10px;
+  }
+  .ng-invalid.ng-dirty {
+    border-color: $brand-danger;
+  }
+  .ng-valid.ng-dirty {
+    border-color: $brand-success;
+  }
+
+  input, button {
+    margin: 5px 0;
+  }
+}
+
+.my-search-home {
+  padding: 0px;
+}
+
+/* overlay */
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+
+.panel {
+  color: $text-color;
+}
+
+.panel legend{
+  color: $text-color;
+}
+
+.panel .glyphicon {
+  padding-right: 20px;
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .form-control,
+.has-error .form-control-feedback{
+  color: $brand-danger;
+  border-color: $brand-danger;
+}
+
+
+/* start home */
+#home {
+  background: url($picture-main) no-repeat;
+  background-size: cover;
+  color: $text-color2;
+  margin-top: 50px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+#home p {
+  font-weight: 400;
+  font-style: italic;
+  line-height: 2em;
+}
+
+
+/* end home */
+#signUp {
+  background: url($picture-main) no-repeat;
+  background-size: cover;
+  color: $text-color2;
+  margin-top: 50px;
+  text-align: center;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+}
+
+/* end home */
+#clazzes {
+  padding-bottom: $padding-bottom;
+}
+
+/* start whoweare */
+#whoweare {
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+}
+
+#whoweare p {
+  padding-top: 10px;
+}
+
+#whoweare span {
+  float: left;
+}
+
+/* end whoweare */
+
+/* start feature */
+#feature {
+  background: $body-bg2;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+}
+
+#feature p {
+  padding-top: 10px;
+}
+
+#feature span {
+  float: left;
+}
+
+#feature .fa {
+  background: $brand-primary;
+  border-radius: 50%;
+  color: $text-color2;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+/* end feature */
+
+/* start studios */
+#studios {
+  background: $body-bg;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+}
+
+#studios p {
+  padding-top: 10px;
+}
+
+#studios span {
+  float: left;
+}
+
+#studios .fa {
+  background: $brand-primary;
+  border-radius: 50%;
+  color: $text-color;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+/* end studiosstudios */
+
+/* start pricing */
+#pricing {
+  background: $body-bg2;
+  text-align: center;
+  padding-top: $padding-top;
+  padding-bottom: $padding-bottom;
+}
+
+#pricing h2 {
+  padding-bottom: 10px;
+}
+
+#pricing h3 {
+  padding-bottom: 30px;
+}
+
+#pricing .pricing {
+  background: $body-bg;
+}
+
+#pricing .active {
+  position: relative;
+  bottom: 20px;
+}
+
+#pricing .pricing .pricing-title {
+  background: darken($brand-primary, 15%);
+  color: $text-color2;
+  font-weight: bold;
+  padding: 30px;
+}
+
+#pricing .pricing .pricing-title p {
+  font-size: 20px;
+}
+
+#pricing .pricing ul {
+  padding: 0;
+  margin: 0;
+}
+
+#pricing .pricing ul li {
+  display: block;
+  list-style: none;
+  padding: 16px;
+}
+
+#pricing .pricing .btn {
+  background: transparent;
+  border: 1px solid $brand-primary;
+  border-radius: 0px;
+  color: $brand-primary;
+  font-weight: bold;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+#pricing .pricing .btn:hover {
+  background: $brand-primary;
+  color: $text-color2;
+}
+
+/* end pricing */
+
+/* start contact */
+#contact {
+  background: $navbar-default-bg;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+#contact p {
+  padding-top: 10px;
+}
+
+#contact span {
+  float: left;
+}
+
+#contact .fa {
+  background: $navbar-default-link-color;
+  border-radius: 60%;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin-right: 20px;
+}
+
+/* end contact */
+
+/* start footer */
+footer {
+  background: $navbar-default-bg;
+  color: $navbar-default-link-color;
+  font-weight: 400;
+  text-align: center;
+  padding: 20px;
+}
+
+/* end footer */
+
+/* ********************/
+
+fieldset {
+  margin-top: 100px;
+}
+legend {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+}
+a {
+  cursor: pointer;
+}
+
+.provider {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border-radius: 4px;
+  outline: none;
+}
+
+#contact .facebook { color: #3B5998; }
+#contact .google { color: #D14836; }
+#contact .twitter { color: #00ACED; }
+#contact .xing { color: #006567; }
+#contact .vk { color: #567ca4; }
+#contact .instagramm { color: #3f729b;}
+
+
+.social-providers,
+.sign-in-now,
+.already-member,
+.not-a-member {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.alert-material {
+  position: fixed;
+  right: 12px;
+  top: 62px;
+  z-index: 1;
+  display: inline-block;
+  min-height: 48px;
+  padding: 13px 24px 12px;
+  font-family: 'Roboto', sans-serif;
+  color: #f1f1f1;
+  cursor: default;
+  background: #323232;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.btn {
+  font-weight: bold;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+}
+
+.btn-lg {
+  font-size: 18px;
+}
+
+/*********************
+* Animations
+*********************/
+
+.fadeZoom.ng-enter {
+  -webkit-animation-duration: 0.6s, 0.2s;
+  -moz-animation-duration: 0.2s, 0.2s;
+  -ms-animation-duration: 0.2s, 0.2s;
+  animation-duration: 0.2, 0.2s;
+  -webkit-animation-name: fadeIn, zoomIn;
+  -moz-animation-name: fadeIn, zoomIn;
+  -ms-animation-name: fadeIn, zoomIn;
+  animation-name: fadeIn, zoomIn;
+}
+
+.fadeZoomFadeDown.ng-enter {
+  -webkit-animation-duration: 0.2s, 0.2s;
+  -moz-animation-duration: 0.2s, 0.2s;
+  -ms-animation-duration: 0.2s, 0.2s;
+  animation-duration: 0.2s, 0.2s;
+  -webkit-animation-name: fadeIn, zoomIn;
+  -moz-animation-name: fadeIn, zoomIn;
+  -ms-animation-name: fadeIn, zoomIn;
+  animation-name: fadeIn, zoomIn;
+}
+
+.fadeZoomFadeDown.ng-leave {
+  -webkit-animation: fadeOutDown 0.2s;
+  -moz-animation: fadeOutDown 0.2s;
+  -ms-animation: fadeOutDown 0.2s;
+  animation: fadeOutDown 0.2s;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.8, 0.8, 0.8);
+    -moz-transform: scale3d(0.8, 0.8, 0.8);
+    -ms-transform: scale3d(0.8, 0.8, 0.8);
+    transform: scale3d(0.8, 0.8, 0.8);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.8, 0.8, 0.8);
+    -moz-transform: scale3d(0.8, 0.8, 0.8);
+    -ms-transform: scale3d(0.8, 0.8, 0.8);
+    transform: scale3d(0.8, 0.8, 0.8);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Dashboard widget buttons */
+#widget-buttons {  }
+#widget-buttons a { color:$text-color;}
+#widget-buttons a:active { color:$text-color; }
+#widget-buttons a:hover { color:$text-color; }
+#widget-buttons a:visited { color:$text-color; }
+
+
+hgroup { padding-top: $padding-top; padding-left: 15px; border-bottom: 1px solid $text-color2; }
+hgroup h1 { color: #2a3644; margin-top: 0; line-height: 1.15; }
+hgroup h2.lead { color: #2a3644; margin: 0; padding-bottom: 10px; }
+
+.search-result .thumbnail { border-radius: 0 !important; }
+.search-result:first-child { margin-top: 0 !important; }
+.search-result { margin-top: 20px; }
+.search-result .col-md-2 { border-right: 1px dotted $text-color2; min-height: 140px; }
+.search-result ul { padding-left: 0 !important; list-style: none;  }
+.search-result ul li { line-height: 30px; }
+.search-result ul li i { padding-right: 5px; }
+.search-result .col-md-7 { position: relative; }
+.search-result h3 { margin-top: 0 !important; margin-bottom: 10px !important; }
+.search-result h3 > a, .search-result i { text-align: left; }
+.search-result p { text-align: left;}
+.search-result span.border { display: block; width: 97%; margin: 0 15px; border-bottom: 1px dotted $text-color2; }
+
+
+/* style.css */
+/* BASIC STYLINGS
+============================================================================= */
+
+/* form styling */
+#form-container                { color:$text-color; background:#fff; margin-bottom:20px;  border-radius:5px; }
+#form-container .page-header   { color:$text-color2; background:$navbar-default-bg; margin:0; padding:10px;  border-top-left-radius:5px; border-top-right-radius:5px; }
+
+/* numbered buttons */
+#status-buttons                 {  }
+#status-buttons a               { color:$text-color2; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+
+/* we will style the span as the circled number */
+#status-buttons span            { background:$navbar-default-bg; display:block; height:30px; margin:0 auto 10px; padding-top:5px; width:30px;
+  border-radius:50%; }
+
+/* active buttons turn light green-blue*/
+#status-buttons a.active span   { background:$brand-success; }
+
+/* style.css */
+/* ANIMATION STYLINGS
+============================================================================= */
+#signup-form            { position:relative; min-height:300px; overflow:hidden; padding:10px; }
+#form-views             { width:auto; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+  transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
+}
+
+/* enter animation */
+#form-views.ng-enter            {
+  -webkit-animation:slideInRight 0.5s both ease;
+  -moz-animation:slideInRight 0.5s both ease;
+  animation:slideInRight 0.5s both ease;
+}
+
+/* leave animation */
+#form-views.ng-leave            {
+  -webkit-animation:slideOutLeft 0.5s both ease;
+  -moz-animation:slideOutLeft 0.5s both ease;
+  animation:slideOutLeft 0.5s both ease;
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+  to      { transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {
+  to      { -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+  to      { -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from    { transform:translateX(200%); }
+  to      { transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+  from    { -moz-transform:translateX(200%); }
+  to      { -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+  from    { -webkit-transform:translateX(200%); }
+  to      { -webkit-transform: translateX(0); }
+}
