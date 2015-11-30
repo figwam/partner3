@@ -20,7 +20,8 @@ object ClazzDefForm {
                     contingent: Short,
                     startFrom: Date,
                     tags: Type,
-                    recurrence: Recurrence)
+                    recurrence: Recurrence,
+                    amount: BigDecimal)
 
   case class DataAddress( street: String,
                     city: String,
@@ -35,7 +36,8 @@ object ClazzDefForm {
       (__ \ 'contingent).read[Short] and
       (__ \ 'startFrom).read[Date] and
       (__ \ 'tags).read[Type]and
-      (__ \ 'recurrence).read[Recurrence]
+      (__ \ 'recurrence).read[Recurrence] and
+      (__ \ 'amount).read[BigDecimal]
       )(ClazzDefForm.Data.apply _)
   }
 }
