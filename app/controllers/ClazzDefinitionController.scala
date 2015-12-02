@@ -7,7 +7,7 @@ import javax.inject.{Inject, Singleton}
 import com.mohiva.play.silhouette.api.{Environment, Silhouette}
 import com.mohiva.play.silhouette.impl.authenticators.JWTAuthenticator
 import com.mohiva.play.silhouette.impl.providers.SocialProviderRegistry
-import forms.ClazzDefForm
+import forms.{FormValidator}
 import models._
 import models.daos._
 import play.api.Logger
@@ -35,11 +35,11 @@ class ClazzDefinitionController @Inject()(
 
 
   def create() = SecuredAction.async(parse.json) { implicit request =>
-    request.body.validate[ClazzDefForm.Data] match {
+    request.body.validate[FormValidator.ClazzDef] match {
       case error: JsError => {
         Future.successful(BadRequest(Json.obj("message" -> Messages("save.fail"), "detail" -> JsError.toJson(error))))
       }
-      case s: JsSuccess[ClazzDefForm.Data] => {
+      case s: JsSuccess[FormValidator.ClazzDef] => {
         request.body.validate[ClazzDefinition].map { clazzDef =>
 
           // In case of onetime set the activTill to class endDate, so it will be automatically historized
@@ -50,6 +50,38 @@ class ClazzDefinitionController @Inject()(
 
           clazzDefinitionDAO.create(clazzDefCopy).flatMap {
             case c:ClazzDefinition =>
+              Future.successful(Created(Json.obj("message" -> Messages("save.ok")))
+                .withHeaders(("Location",request.path+"/"+c.id.get.toString())))
+            case _ =>
+              Future.successful(BadRequest(Json.obj("message" -> Messages("save.fail"))))
+          }
+        }.recoverTotal {
+          case error =>
+            Future.successful(BadRequest(Json.obj("message" -> "invalid.data", "detail" -> JsError.toJson(error))))
+        }
+      }
+    }
+  }
+
+
+
+
+  def update(id: UUID) = SecuredAction.async(parse.json) { implicit request =>
+    request.body.validate[FormValidator.ClazzDef] match {
+      case error: JsError => {
+        Future.successful(BadRequest(Json.obj("message" -> Messages("save.fail"), "detail" -> JsError.toJson(error))))
+      }
+      case s: JsSuccess[FormValidator.ClazzDef] => {
+        request.body.validate[ClazzDefinition].map { clazzDef =>
+
+          // In case of onetime set the activTill to class endDate, so it will be automatically historized
+          val clazzDefCopy = clazzDef.recurrence match {
+            case Recurrence.onetime => clazzDef.copy(id = Some(id), idStudio = request.identity.studio.id, activeTill = clazzDef.endAt)
+            case _ => clazzDef.copy(id = Some(id), idStudio = request.identity.studio.id)
+          }
+
+          clazzDefinitionDAO.update(clazzDefCopy).flatMap {
+            case c:ClazzDefinition =>
               Future.successful(Ok(Json.obj("message" -> Messages("save.ok"))))
             case _ =>
               Future.successful(BadRequest(Json.obj("message" -> Messages("save.fail"))))
@@ -59,6 +91,12 @@ class ClazzDefinitionController @Inject()(
             Future.successful(BadRequest(Json.obj("message" -> "invalid.data", "detail" -> JsError.toJson(error))))
         }
       }
+    }
+  }
+
+  def retrieve(id: UUID) = SecuredAction.async(parse.json) { implicit request =>
+    clazzDefinitionDAO.retrieve(id).flatMap { o =>
+      o.fold(Future.successful(NotFound(Json.obj("message" -> Messages("clazzdef.not.found")))))(c => Future.successful(Ok(Json.toJson(c))))
     }
   }
 
