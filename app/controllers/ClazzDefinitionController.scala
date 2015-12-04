@@ -30,7 +30,7 @@ class ClazzDefinitionController @Inject()(
                                        val messagesApi: MessagesApi,
                                        val env: Environment[Partner, JWTAuthenticator],
                                        socialProviderRegistry: SocialProviderRegistry,
-                                       clazzDefinitionDAO: ClazzDefinitionDAO)
+                                       dao: ClazzDefinitionDAO)
   extends Silhouette[Partner, JWTAuthenticator] {
 
 
@@ -48,7 +48,7 @@ class ClazzDefinitionController @Inject()(
             case _ => clazzDef.copy(idStudio = request.identity.studio.id)
           }
 
-          clazzDefinitionDAO.create(clazzDefCopy).flatMap {
+          dao.create(clazzDefCopy).flatMap {
             case c:ClazzDefinition =>
               Future.successful(Created(Json.obj("message" -> Messages("save.ok")))
                 .withHeaders(("Location",request.path+"/"+c.id.get.toString())))
@@ -80,7 +80,7 @@ class ClazzDefinitionController @Inject()(
             case _ => clazzDef.copy(id = Some(id), idStudio = request.identity.studio.id)
           }
 
-          clazzDefinitionDAO.update(clazzDefCopy).flatMap {
+          dao.update(clazzDefCopy).flatMap {
             case c:ClazzDefinition =>
               Future.successful(Ok(Json.obj("message" -> Messages("save.ok"))))
             case _ =>
@@ -94,14 +94,24 @@ class ClazzDefinitionController @Inject()(
     }
   }
 
-  def retrieve(id: UUID) = SecuredAction.async(parse.json) { implicit request =>
-    clazzDefinitionDAO.retrieve(id).flatMap { o =>
+  def retrieve(id: UUID) = SecuredAction.async { implicit request =>
+    dao.retrieve(id).flatMap { o =>
       o.fold(Future.successful(NotFound(Json.obj("message" -> Messages("clazzdef.not.found")))))(c => Future.successful(Ok(Json.toJson(c))))
     }
   }
 
+  def delete(id: UUID) = SecuredAction.async { implicit request =>
+    dao.delete(id).flatMap { r => r match {
+        case 0 => Future.successful(NotFound(Json.obj("message" -> Messages("clazzdef.not.found"))))
+        case 1 => Future.successful(Ok(Json.obj("message" -> Messages("clazzdef.not.found"))))
+        case _ => Logger.error("WTH?!? Whe expect NO or exactly one unique result here")
+          Future.successful(InternalServerError);
+      }
+    }
+  }
+
   def listByPartner(page: Int, orderBy: Int, filter: String) = SecuredAction.async { implicit request =>
-    clazzDefinitionDAO.listByPartner(page, 10, orderBy, request.identity.id.getOrElse(UUID.randomUUID())).flatMap { pageClazzes =>
+    dao.listByPartner(page, 10, orderBy, request.identity.id.getOrElse(UUID.randomUUID())).flatMap { pageClazzes =>
       Future.successful(Ok(Json.toJson(pageClazzes)))
     }.recover {
       case ex: TimeoutException =>

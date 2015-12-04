@@ -14,6 +14,7 @@ GET           /clazzes/partners/me                   controllers.ClazzDefinition
 POST          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
 PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
 GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
+DELETE          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.delete(id: java.util.UUID)
 GET           /signOut                               controllers.ApplicationController.signOut
 POST          /signIn                                controllers.CredentialsAuthController.authenticate
 POST          /signUp                                controllers.SignUpController.signUp
