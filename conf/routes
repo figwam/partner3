@@ -4,18 +4,25 @@
 
 GET           /                                      com.tuplejump.playYeoman.Yeoman.index
 
+#address
+POST          /addresses                            controllers.AddressController.create
+GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
+PUT           /addresses/:id                        controllers.AddressController.update(id: java.util.UUID)
+DELETE        /addresses/:id                        controllers.AddressController.delete(id: java.util.UUID)
+
 #open resources
-GET           /partner                               controllers.ApplicationController.partner
-GET           /offers                               controllers.ApplicationController.offers
-GET           /enums                               controllers.ApplicationController.enums
+GET           /user                               controllers.UserController.user
+GET           /offers                               controllers.OthersController.offers
+GET           /enums                               controllers.OthersController.enums
 
 # Secured resources
 GET           /clazzes/partners/me                   controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
 POST          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
 PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
 GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
-DELETE          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.delete(id: java.util.UUID)
-GET           /signOut                               controllers.ApplicationController.signOut
+DELETE          /partners/me/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
+GET           /signOut                               controllers.UserController.signOut
+
 POST          /signIn                                controllers.CredentialsAuthController.authenticate
 POST          /signUp                                controllers.SignUpController.signUp
 

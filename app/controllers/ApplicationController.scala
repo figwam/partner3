@@ -33,12 +33,12 @@ import scala.concurrent.{Await, Future}
 @Singleton
 class ApplicationController @Inject()(
                                        val messagesApi: MessagesApi,
-                                       val env: Environment[Partner, JWTAuthenticator],
+                                       val env: Environment[User, JWTAuthenticator],
                                        socialProviderRegistry: SocialProviderRegistry,
                                        clazzDAO: ClazzDAO,
                                        partnerDAO: PartnerDAO,
                                        offerDAO: OfferDAO)
-  extends Silhouette[Partner, JWTAuthenticator] {
+  extends Silhouette[User, JWTAuthenticator] {
 
 
 
@@ -88,7 +88,10 @@ class ApplicationController @Inject()(
    * @return The result to display.
    */
   def partner = SecuredAction.async { implicit request =>
-    Future.successful(Ok(Json.toJson(request.identity)))
+    request.identity match {
+      case p:Partner => Future.successful(Ok(Json.toJson(p)))
+      case _ => Future.successful(InternalServerError)
+    }
   }
 
   /**

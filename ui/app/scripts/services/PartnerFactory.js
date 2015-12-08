@@ -8,7 +8,7 @@
 app.factory('PartnerFactory', function($http) {
   return {
     get: function() {
-      return $http.get('/partner');
+      return $http.get('/user');
     }
   };
 });

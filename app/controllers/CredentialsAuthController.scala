@@ -11,8 +11,8 @@ import com.mohiva.play.silhouette.impl.authenticators.JWTAuthenticator
 import com.mohiva.play.silhouette.impl.exceptions.IdentityNotFoundException
 import com.mohiva.play.silhouette.impl.providers._
 import forms.SignInForm
-import models.Partner
-import models.services.PartnerService
+import models.{User, Partner}
+import models.daos.PartnerDAOImpl
 import net.ceedubs.ficus.Ficus._
 import play.api.Configuration
 import play.api.i18n.{Messages, MessagesApi}
@@ -29,7 +29,7 @@ import scala.concurrent.duration._
  *
  * @param messagesApi The Play messages API.
  * @param env The Silhouette environment.
- * @param partnerService The partner service implementation.
+ * @param dao The partner service implementation.
  * @param authInfoRepository The auth info repository implementation.
  * @param credentialsProvider The credentials provider.
  * @param socialProviderRegistry The social provider registry.
@@ -37,15 +37,15 @@ import scala.concurrent.duration._
  * @param clock The clock instance.
  */
 class CredentialsAuthController @Inject() (
-  val messagesApi: MessagesApi,
-  val env: Environment[Partner, JWTAuthenticator],
-  partnerService: PartnerService,
-  authInfoRepository: AuthInfoRepository,
-  credentialsProvider: CredentialsProvider,
-  socialProviderRegistry: SocialProviderRegistry,
-  configuration: Configuration,
-  clock: Clock)
-  extends Silhouette[Partner, JWTAuthenticator] {
+                                            val messagesApi: MessagesApi,
+                                            val env: Environment[User, JWTAuthenticator],
+                                            dao: PartnerDAOImpl,
+                                            authInfoRepository: AuthInfoRepository,
+                                            credentialsProvider: CredentialsProvider,
+                                            socialProviderRegistry: SocialProviderRegistry,
+                                            configuration: Configuration,
+                                            clock: Clock)
+  extends Silhouette[User, JWTAuthenticator] {
 
   /**
    * Converts the JSON into a `SignInForm.Data` object.
@@ -64,7 +64,7 @@ class CredentialsAuthController @Inject() (
   def authenticate = Action.async(parse.json) { implicit request =>
     request.body.validate[SignInForm.Data].map { data =>
       credentialsProvider.authenticate(Credentials(data.email, data.password)).flatMap { loginInfo =>
-        partnerService.retrieve(loginInfo).flatMap {
+        dao.retrieve(loginInfo).flatMap {
           case Some(partner) => env.authenticatorService.create(loginInfo).map {
             case authenticator if data.rememberMe =>
               val c = configuration.underlying
