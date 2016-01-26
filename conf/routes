@@ -15,8 +15,11 @@ GET           /user                               controllers.UserController.use
 GET           /offers                               controllers.OthersController.offers
 GET           /enums                               controllers.OthersController.enums
 
-# Secured resources
+
 GET           /clazzes/partners/me                   controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
+
+
+# clazz definitions
 POST          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
 PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
 GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)

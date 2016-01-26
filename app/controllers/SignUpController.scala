@@ -1,7 +1,5 @@
 package controllers
 
-import java.sql.Timestamp
-import java.util.{GregorianCalendar, UUID}
 import javax.inject.Inject
 
 import com.mohiva.play.silhouette.api._
@@ -11,8 +9,7 @@ import com.mohiva.play.silhouette.api.util.PasswordHasher
 import com.mohiva.play.silhouette.impl.authenticators.JWTAuthenticator
 import com.mohiva.play.silhouette.impl.providers.CredentialsProvider
 import forms.{SignUpForm}
-import models.daos.PartnerDAO
-import models.{User, Studio, Address, Partner}
+import models._
 import play.api.i18n.{MessagesApi}
 import play.api.libs.json._
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -32,7 +29,7 @@ import scala.concurrent.Future
 class SignUpController @Inject()(
                                   val messagesApi: MessagesApi,
                                   val env: Environment[User, JWTAuthenticator],
-                                  dao: PartnerDAO,
+                                  service: PartnerService,
                                   authInfoRepository: AuthInfoRepository,
                                   avatarService: AvatarService,
                                   passwordHasher: PasswordHasher)
@@ -46,7 +43,7 @@ class SignUpController @Inject()(
   def signUp = Action.async(parse.json) { implicit request =>
     request.body.validate[SignUpForm.Data].map { data =>
       val loginInfo = LoginInfo(CredentialsProvider.ID, data.email)
-      dao.retrieve(loginInfo).flatMap {
+      service.retrieve(loginInfo).flatMap {
         case Some(partner) =>
           Future.successful(Unauthorized(Json.obj("message" -> "partner.exists")))
         case None =>
@@ -64,7 +61,7 @@ class SignUpController @Inject()(
 
           for {
             avatar <- avatarService.retrieveURL(data.email)
-            partner <- dao.signUp(partner.copy(avatarurl = avatar),loginInfo, addr)
+            partner <- service.signUp(partner.copy(avatarurl = avatar),loginInfo, addr)
             authInfo <- authInfoRepository.add(loginInfo, authInfo)
             authenticator <- env.authenticatorService.create(loginInfo)
             token <- env.authenticatorService.init(authenticator)
