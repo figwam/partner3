@@ -4,17 +4,27 @@
 
 GET           /                                      com.tuplejump.playYeoman.Yeoman.index
 
-#address
-POST          /addresses                            controllers.AddressController.create
-GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
-PUT           /addresses/:id                        controllers.AddressController.update(id: java.util.UUID)
-DELETE        /addresses/:id                        controllers.AddressController.delete(id: java.util.UUID)
+# address
+#POST          /addresses                            controllers.AddressController.create
+#GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
+#PUT           /addresses/:id                        controllers.AddressController.update(id: java.util.UUID)
+#DELETE        /addresses/:id                        controllers.AddressController.delete(id: java.util.UUID)
+
+# address
+GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveByOwner(id: java.util.UUID)
+PUT           /partners/me/addresses/:id                        controllers.AddressController.updateByOwner(id: java.util.UUID)
+
 
 #open resources
 GET           /user                               controllers.UserController.user
 GET           /offers                               controllers.OthersController.offers
 GET           /enums                               controllers.OthersController.enums
 
+
+# partner
+GET           /partners/me                           controllers.PartnerController.retrieve
+PUT           /partners/me                           controllers.PartnerController.update
+DELETE        /partners/me                           controllers.PartnerController.delete
 
 GET           /clazzes/partners/me                   controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
 
@@ -24,11 +34,15 @@ POST          /partners/me/clazzdefs                 controllers.ClazzDefinition
 PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
 GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
 DELETE          /partners/me/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
-GET           /signOut                               controllers.UserController.signOut
 
+# Authentication
+GET           /signOut                               controllers.UserController.signOut
 POST          /signIn                                controllers.CredentialsAuthController.authenticate
 POST          /signUp                                controllers.SignUpController.signUp
-
+GET           /signUp/confirm/:token                 controllers.SignUpController.signUpConfirm(token: String)
+POST	      /password/reset/:token	                 controllers.SignUpController.resetPassword(token: String)
+POST	      /password/reset		                 controllers.SignUpController.forgotPassword
+POST	      /password/change				         controllers.SignUpController.changePassword
 
 # Dynamic part of the url
 GET           /views/$template<[^/]+>.html           controllers.ApplicationController.view(template)

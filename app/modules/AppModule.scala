@@ -1,7 +1,7 @@
 package modules
 
 import com.google.inject.AbstractModule
-import models.{PartnerService, PartnerServiceImpl, UserService}
+import models._
 import models.daos._
 import net.codingwell.scalaguice.ScalaModule
 
@@ -15,5 +15,6 @@ class AppModule extends AbstractModule with ScalaModule {
    */
   def configure() {
     bind[UserService].to[PartnerService]
+    bind[AddressService].to[AddressServicePartnerImpl]
   }
 }
