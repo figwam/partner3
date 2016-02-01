@@ -32,7 +32,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play-slick" % "1.0.1",
   "com.typesafe.play" %% "play-slick-evolutions" % "1.0.1",
   "org.postgresql" % "postgresql" % "9.4-1202-jdbc42",
-  "com.cloudinary" %% "cloudinary-scala-play" % "0.9.7-SNAPSHOT",
+  "com.cloudinary" % "cloudinary-http44" % "1.2.2",
   cache,
   evolutions,
   filters

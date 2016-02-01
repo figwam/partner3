@@ -19,6 +19,11 @@ PUT           /partners/me/addresses/:id                        controllers.Addr
 GET           /user                               controllers.UserController.user
 GET           /offers                               controllers.OthersController.offers
 GET           /enums                               controllers.OthersController.enums
+GET           /clazzes/next                          controllers.ClazzDefinitionController.calculateNextClazzes
+
+POST           /images                           controllers.ImageController.create
+GET           /images/:id                           controllers.ImageController.retrieve(id: java.util.UUID)
+DELETE           /images/:id                           controllers.ImageController.delete(id: java.util.UUID)
 
 
 # partner
