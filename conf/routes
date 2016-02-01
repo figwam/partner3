@@ -30,10 +30,16 @@ GET           /clazzes/partners/me                   controllers.ClazzDefinition
 
 
 # clazz definitions
-POST          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
-PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
-GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
-DELETE          /partners/me/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
+POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.create
+PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
+GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
+DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
+
+# studios definitions
+POST         /partners/me/studio                 controllers.StudioController.create
+PUT          /partners/me/studio              controllers.StudioController.update
+GET          /partners/me/studio              controllers.StudioController.retrieve
+DELETE       /partners/me/studio           controllers.StudioController.delete
 
 # Authentication
 GET           /signOut                               controllers.UserController.signOut
