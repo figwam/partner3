@@ -3,7 +3,6 @@ package models
 import java.util.UUID
 import javax.inject.Inject
 
-import models.daos.DAOSlick
 import play.api.db.slick.DatabaseConfigProvider
 
 import scala.concurrent.ExecutionContext.Implicits.global

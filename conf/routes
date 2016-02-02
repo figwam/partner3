@@ -14,16 +14,18 @@ GET           /                                      com.tuplejump.playYeoman.Ye
 GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveByOwner(id: java.util.UUID)
 PUT           /partners/me/addresses/:id                        controllers.AddressController.updateByOwner(id: java.util.UUID)
 
-
 #open resources
 GET           /user                               controllers.UserController.user
 GET           /offers                               controllers.OthersController.offers
 GET           /enums                               controllers.OthersController.enums
+#GET           /clazzes                               controllers.OthersController.clazzes(p:Int ?= 0, s:Int ?= 1, f ?= "")
+#GET           /clazzesCount                          controllers.OthersController.clazzesCount
 GET           /clazzes/next                          controllers.ClazzDefinitionController.calculateNextClazzes
 
-POST           /images                           controllers.ImageController.create
-GET           /images/:id                           controllers.ImageController.retrieve(id: java.util.UUID)
-DELETE           /images/:id                           controllers.ImageController.delete(id: java.util.UUID)
+#images
+POST          /c/images                             controllers.ImageController.create
+GET           /c/images/:id                         controllers.ImageController.retrieve(id: java.util.UUID)
+DELETE        /c/images/:id                         controllers.ImageController.delete(id: java.util.UUID)
 
 
 # partner
