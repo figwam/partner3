@@ -24,8 +24,9 @@ GET           /clazzes/next                          controllers.ClazzDefinition
 
 #images
 POST          /c/images                             controllers.ImageController.create
-GET           /c/images/:id                         controllers.ImageController.retrieve(id: java.util.UUID)
-DELETE        /c/images/:id                         controllers.ImageController.delete(id: java.util.UUID)
+GET           /c/images/$id<[^/]+>.jpg              controllers.ImageController.retrieve(id: java.util.UUID)
+DELETE        /c/images/$id<[^/]+>.jpg              controllers.ImageController.delete(id: java.util.UUID)
+
 
 
 # partner

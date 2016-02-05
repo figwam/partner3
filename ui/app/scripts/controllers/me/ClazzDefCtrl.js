@@ -47,7 +47,7 @@ app.controller('ClazzDefCtrl', ['$rootScope', '$state', '$scope', '$http', '$tem
     $scope.clazzdef.recurrence = $scope.ui.recurrence.id
     $http({
       method: "POST",
-      url: "/partners/me/clazzdefs",
+      url: "/partners/me/studio/clazzdefs",
       data: $scope.clazzdef,
       headers: { 'Content-Type': 'application/json; charset=UTF-8'},
       cache: $templateCache}).
