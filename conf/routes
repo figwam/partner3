@@ -2,6 +2,18 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+#   .d8888b.
+#  d88P  Y88b
+#  888    888
+#  888         .d88b.  88888b.d88b.  88888b.d88b.   .d88b.  88888b.
+#  888        d88""88b 888 "888 "88b 888 "888 "88b d88""88b 888 "88b
+#  888    888 888  888 888  888  888 888  888  888 888  888 888  888
+#  Y88b  d88P Y88..88P 888  888  888 888  888  888 Y88..88P 888  888
+#   "Y8888P"   "Y88P"  888  888  888 888  888  888  "Y88P"  888  888
+#
+#
+#
+
 GET           /                                      com.tuplejump.playYeoman.Yeoman.index
 
 # address
@@ -9,45 +21,6 @@ GET           /                                      com.tuplejump.playYeoman.Ye
 #GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
 #PUT           /addresses/:id                        controllers.AddressController.update(id: java.util.UUID)
 #DELETE        /addresses/:id                        controllers.AddressController.delete(id: java.util.UUID)
-
-# address
-GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveByOwner(id: java.util.UUID)
-PUT           /partners/me/addresses/:id                        controllers.AddressController.updateByOwner(id: java.util.UUID)
-
-#open resources
-GET           /user                               controllers.UserController.user
-GET           /offers                               controllers.OthersController.offers
-GET           /enums                               controllers.OthersController.enums
-#GET           /clazzes                               controllers.OthersController.clazzes(p:Int ?= 0, s:Int ?= 1, f ?= "")
-#GET           /clazzesCount                          controllers.OthersController.clazzesCount
-GET           /clazzes/next                          controllers.ClazzDefinitionController.calculateNextClazzes
-
-#images
-POST          /c/images                             controllers.ImageController.create
-GET           /c/images/$id<[^/]+>.jpg              controllers.ImageController.retrieve(id: java.util.UUID)
-DELETE        /c/images/$id<[^/]+>.jpg              controllers.ImageController.delete(id: java.util.UUID)
-
-
-
-# partner
-GET           /partners/me                           controllers.PartnerController.retrieve
-PUT           /partners/me                           controllers.PartnerController.update
-DELETE        /partners/me                           controllers.PartnerController.delete
-
-GET           /clazzes/partners/me                   controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
-
-
-# clazz definitions
-POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.create
-PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
-GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
-DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
-
-# studios definitions
-POST         /partners/me/studio                 controllers.StudioController.create
-PUT          /partners/me/studio              controllers.StudioController.update
-GET          /partners/me/studio              controllers.StudioController.retrieve
-DELETE       /partners/me/studio           controllers.StudioController.delete
 
 # Authentication
 GET           /signOut                               controllers.UserController.signOut
@@ -58,6 +31,9 @@ POST	      /password/reset/:token	                 controllers.SignUpController.
 POST	      /password/reset		                 controllers.SignUpController.forgotPassword
 POST	      /password/change				         controllers.SignUpController.changePassword
 
+#Map the callouts
+GET           /generate/map                          controllers.Callouts.getStaticGoogleMap
+
 # Dynamic part of the url
 GET           /views/$template<[^/]+>.html           controllers.ApplicationController.view(template)
 GET           /views/me/$template<[^/]+>.html        controllers.ApplicationController.viewRestricted(template)
@@ -67,6 +43,59 @@ GET           /views/me/$template<[^/]+>.html        controllers.ApplicationCont
 GET           /assets/*file                          controllers.Assets.at(path="/public", file)
 GET           /webjars/*file                         controllers.WebJarAssets.at(file)
 
-# Cloudinary upload foto
+#open resources
+GET           /user                                  controllers.UserController.user
+GET           /offers                                controllers.OthersController.offers
+GET           /enums                                 controllers.OthersController.enums
+#GET          /clazzes                               controllers.OthersController.clazzes(p:Int ?= 0, s:Int ?= 1, f ?= "")
+#GET          /clazzesCount                          controllers.OthersController.clazzesCount
+GET           /clazzes/next                          controllers.ClazzDefinitionController.calculateNextClazzes
+
+#images
+POST          /c/images                             controllers.ImageController.create
+GET           /c/images/$id<[^/]+>.jpg              controllers.ImageController.retrieve(id: java.util.UUID)
+DELETE        /c/images/$id<[^/]+>.jpg              controllers.ImageController.delete(id: java.util.UUID)
+
+
+#  8888888b.                  888
+#  888   Y88b                 888
+#  888    888                 888
+#  888   d88P 8888b.  888d888 888888 88888b.   .d88b.  888d888
+#  8888888P"     "88b 888P"   888    888 "88b d8P  Y8b 888P"
+#  888       .d888888 888     888    888  888 88888888 888
+#  888       888  888 888     Y88b.  888  888 Y8b.     888
+#  888       "Y888888 888      "Y888 888  888  "Y8888  888
+#
+#
+#
+
+# partner
+GET           /partners/me                           controllers.PartnerController.retrieve
+PUT           /partners/me                           controllers.PartnerController.update
+DELETE        /partners/me                           controllers.PartnerController.delete
+
+
+# clazz definitions
+POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.create
+GET          /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
+PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
+GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
+DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
+
+# studios definitions
+POST         /partners/me/studio                 controllers.StudioController.create
+PUT          /partners/me/studio              controllers.StudioController.update
+GET          /partners/me/studio              controllers.StudioController.retrieve
+DELETE       /partners/me/studio           controllers.StudioController.delete
+
+# get ALL (inner join) clazzes which the trainee is registered to (with some personalized information)
+#1420066800000 = 01.01.2015 00:00:00 LocalTime, see http://currentmillis.com/
+#7258114800000 = 01.01.2200 00:00:00 So pretty in future. What will happen in year 2200 with this app I actually dont care!
+GET          /partners/me/clazzes                    controllers.ClazzController.clazzesPersonalizedMy(p:Int ?= 0, s:Int ?= 1, f ?= "", sf:Long ?= 1420066800000L, ea:Long ?= 7258114800000L)
+
+# address
+GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveByOwner(id: java.util.UUID)
+PUT           /partners/me/addresses/:id                        controllers.AddressController.updateByOwner(id: java.util.UUID)
+
 
 ->            /                                      yeoman.Routes

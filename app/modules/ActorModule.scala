@@ -11,15 +11,13 @@ import workers.{ClazzScheduler, DBLogAdmin}
 /**
  * Created by alex on 28/09/15.
  */
-class AppModule extends AbstractModule with ScalaModule with AkkaGuiceSupport {
+class ActorModule extends AbstractModule with ScalaModule with AkkaGuiceSupport {
 
   /**
    * Configures the module.
    */
   def configure() {
-    bind[UserService].to[PartnerService]
-    bind[AddressService].to[AddressServicePartnerImpl]
-    bind[DelegableAuthInfoDAO[PasswordInfo]].to[PartnerPasswordInfo]
-    bind[ClazzService].to[ClazzServicePartnerImpl]
+    bindActor[ClazzScheduler]("ClazzScheduler")
+    bindActor[DBLogAdmin]("DBLogAdmin")
   }
 }
