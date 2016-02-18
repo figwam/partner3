@@ -80,6 +80,7 @@ POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefi
 GET          /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
 PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
 GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
+GET          /partners/me/studio/clazzdefs/:id/clazzes              controllers.ClazzController.clazzesByClazzDef(id: java.util.UUID)
 DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
 
 # studios definitions

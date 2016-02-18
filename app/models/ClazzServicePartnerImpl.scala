@@ -11,7 +11,7 @@ import scala.concurrent.Future
 
 
 /**
-  * Trainee implementation of the Clazz ressource.
+  * Partner implementation of the Clazz ressource.
   *
   * @param dbConfigProvider
   */

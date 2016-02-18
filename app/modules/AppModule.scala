@@ -20,6 +20,7 @@ class AppModule extends AbstractModule with ScalaModule with AkkaGuiceSupport {
     bind[UserService].to[PartnerService]
     bind[AddressService].to[AddressServicePartnerImpl]
     bind[DelegableAuthInfoDAO[PasswordInfo]].to[PartnerPasswordInfo]
+
     bind[ClazzService].to[ClazzServicePartnerImpl]
   }
 }
