@@ -56,6 +56,9 @@ POST          /c/images                             controllers.ImageController.
 GET           /c/images/$id<[^/]+>.jpg              controllers.ImageController.retrieve(id: java.util.UUID)
 DELETE        /c/images/$id<[^/]+>.jpg              controllers.ImageController.delete(id: java.util.UUID)
 
+#Studio
+GET           /studios/:id                          controllers.StudioController.retrieve(id: java.util.UUID)
+
 
 #  8888888b.                  888
 #  888   Y88b                 888
@@ -78,16 +81,16 @@ DELETE        /partners/me                           controllers.PartnerControll
 # clazz definitions
 POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.create
 GET          /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
-PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.update(id: java.util.UUID)
+PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.updateOwn(id: java.util.UUID)
 GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
-GET          /partners/me/studio/clazzdefs/:id/clazzes              controllers.ClazzController.clazzesByClazzDef(id: java.util.UUID)
-DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.delete(id: java.util.UUID)
+GET          /partners/me/studio/clazzdefs/:id/clazzes              controllers.ClazzController.clazzesByClazzDef(p:Int ?= 0, s:Int ?= 1, id: java.util.UUID)
+DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.deleteOwn(id: java.util.UUID)
 
 # studios definitions
-POST         /partners/me/studio                 controllers.StudioController.create
-PUT          /partners/me/studio              controllers.StudioController.update
-GET          /partners/me/studio              controllers.StudioController.retrieve
-DELETE       /partners/me/studio           controllers.StudioController.delete
+POST         /partners/me/studios                 controllers.StudioController.create
+PUT          /partners/me/studios/:id              controllers.StudioController.updateOwn(id: java.util.UUID)
+GET          /partners/me/studios/:id              controllers.StudioController.retrieveOwn(id: java.util.UUID)
+DELETE       /partners/me/studios/:id           controllers.StudioController.deleteOwn(id: java.util.UUID)
 
 # get ALL (inner join) clazzes which the trainee is registered to (with some personalized information)
 #1420066800000 = 01.01.2015 00:00:00 LocalTime, see http://currentmillis.com/
@@ -95,8 +98,8 @@ DELETE       /partners/me/studio           controllers.StudioController.delete
 GET          /partners/me/clazzes                    controllers.ClazzController.clazzesPersonalizedMy(p:Int ?= 0, s:Int ?= 1, f ?= "", sf:Long ?= 1420066800000L, ea:Long ?= 7258114800000L)
 
 # address
-GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveByOwner(id: java.util.UUID)
-PUT           /partners/me/addresses/:id                        controllers.AddressController.updateByOwner(id: java.util.UUID)
+GET           /partners/me/addresses/:id                        controllers.AddressController.retrieveOwn(id: java.util.UUID)
+PUT           /partners/me/addresses/:id                        controllers.AddressController.updateOwn(id: java.util.UUID)
 
 
 ->            /                                      yeoman.Routes
