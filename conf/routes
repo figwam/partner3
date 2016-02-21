@@ -18,7 +18,7 @@ GET           /                                      com.tuplejump.playYeoman.Ye
 
 # address
 #POST          /addresses                            controllers.AddressController.create
-#GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
+GET           /addresses/:id                        controllers.AddressController.retrieve(id: java.util.UUID)
 #PUT           /addresses/:id                        controllers.AddressController.update(id: java.util.UUID)
 #DELETE        /addresses/:id                        controllers.AddressController.delete(id: java.util.UUID)
 
@@ -59,6 +59,9 @@ DELETE        /c/images/$id<[^/]+>.jpg              controllers.ImageController.
 #Studio
 GET           /studios/:id                          controllers.StudioController.retrieve(id: java.util.UUID)
 
+#Partner
+#GET           /partners/:id                          controllers.PartnerController.retrieveP(id: java.util.UUID)
+
 
 #  8888888b.                  888
 #  888   Y88b                 888
@@ -74,17 +77,19 @@ GET           /studios/:id                          controllers.StudioController
 
 # partner
 GET           /partners/me                           controllers.PartnerController.retrieve
+GET           /partners/:id                          controllers.PartnerController.retrieveP(id: java.util.UUID)
+
 PUT           /partners/me                           controllers.PartnerController.update
 DELETE        /partners/me                           controllers.PartnerController.delete
 
 
 # clazz definitions
-POST         /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.create
-GET          /partners/me/studio/clazzdefs                 controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
-PUT          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.updateOwn(id: java.util.UUID)
-GET          /partners/me/studio/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
-GET          /partners/me/studio/clazzdefs/:id/clazzes              controllers.ClazzController.clazzesByClazzDef(p:Int ?= 0, s:Int ?= 1, id: java.util.UUID)
-DELETE       /partners/me/studio/clazzdefs/:id           controllers.ClazzDefinitionController.deleteOwn(id: java.util.UUID)
+POST         /partners/me/clazzdefs                 controllers.ClazzDefinitionController.create
+GET          /partners/me/clazzdefs                 controllers.ClazzDefinitionController.listByPartner(p:Int ?= 0, s:Int ?= 1, f ?= "")
+PUT          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.updateOwn(id: java.util.UUID)
+GET          /partners/me/clazzdefs/:id              controllers.ClazzDefinitionController.retrieve(id: java.util.UUID)
+GET          /partners/me/clazzdefs/:id/clazzes              controllers.ClazzController.clazzesByClazzDef(p:Int ?= 0, s:Int ?= 1, id: java.util.UUID)
+DELETE       /partners/me/clazzdefs/:id           controllers.ClazzDefinitionController.deleteOwn(id: java.util.UUID)
 
 # studios definitions
 POST         /partners/me/studios                 controllers.StudioController.create
